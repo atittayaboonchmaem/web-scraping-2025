@@ -1,5 +1,3 @@
-import streamlit as st
-import pandas as pd
 
 #st.write("สวัสดี อาทิตยา")
 
@@ -119,8 +117,24 @@ import pandas as pd
 #st.header(f"This page has run {st.session_state.counter} times.")
 #st.button("Run it again")
 
-import streamlit as st
+#import streamlit as st
 
-conn = st.connection("my_database")
-df = conn.query("select * from film")
-st.dataframe(df)
+# conn = st.connection("my_database")
+# df = conn.query("select * from film")
+# st.dataframe(df)
+
+import streamlit as st
+import numpy as np
+import pandas as pd
+import pickle
+ 
+st.write("สวัสดี อาทิตยา")
+ 
+x = np.array([5,15,25,35,45,55,22,30]).reshape(-1, 1)#เปลี่ยนจาก1มิติเป็น2มิติ
+y = np.array([5,20,14,32,22,38,11,15])
+ 
+file_name = 'price_model.ml'
+load_model = pickle.load(open(file_name, 'rb'))
+r2 = load_model.score(x, y)
+ 
+st.write(r2)
